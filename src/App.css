@@ -1,0 +1,2428 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  background: #05070d;
+}
+
+button {
+  font: inherit;
+}
+
+.app {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #05070d;
+  color: white;
+  font-family: "DM Sans", sans-serif;
+}
+
+/* =========================================
+   VIDEO
+========================================= */
+
+.campus-video {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.video-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(180deg,
+      rgba(2, 5, 12, 0.35),
+      rgba(2, 5, 12, 0.15) 45%,
+      rgba(2, 5, 12, 0.8));
+}
+
+.vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at center,
+      transparent 35%,
+      rgba(0, 0, 0, 0.6));
+}
+
+/* =========================================
+   LANDING
+========================================= */
+
+.landing-screen {
+  position: relative;
+  z-index: 3;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.landing-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeUp 1.2s ease forwards;
+}
+
+.eyebrow {
+  margin: 0 0 22px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.landing-content h1 {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(56px, 9vw, 128px);
+  line-height: 0.95;
+  font-weight: 600;
+  letter-spacing: -0.07em;
+  text-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+}
+
+.landing-content h1 span {
+  color: #9ee7ff;
+  font-weight: 400;
+}
+
+.tagline {
+  margin: 24px 0 42px;
+  font-size: clamp(15px, 2vw, 19px);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.enter-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  min-width: 220px;
+  padding: 17px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  transition: 0.3s ease;
+}
+
+.enter-button:hover {
+  transform: scale(1.06);
+  background: rgba(120, 220, 255, 0.13);
+  border-color: rgba(170, 235, 255, 0.7);
+  box-shadow:
+    0 0 40px rgba(80, 210, 255, 0.2),
+    inset 0 0 20px rgba(255, 255, 255, 0.06);
+}
+
+.enter-button:active {
+  transform: scale(0.98);
+}
+
+.arrow {
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+.enter-button:hover .arrow {
+  transform: translateX(5px);
+}
+
+/* =========================================
+   BOTTOM HINT
+========================================= */
+
+.bottom-hint {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  white-space: nowrap;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.hint-line {
+  width: 35px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* =========================================
+   ROLE
+========================================= */
+
+.role-screen {
+  position: relative;
+  z-index: 3;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 70px 24px;
+}
+
+.role-content {
+  width: min(1100px, 100%);
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.role-content h2 {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(42px, 6vw, 76px);
+  line-height: 1;
+  letter-spacing: -0.06em;
+}
+
+.role-content h2 span {
+  color: #9ee7ff;
+  font-weight: 400;
+}
+
+.role-subtitle {
+  margin: 18px 0 50px;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.role-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.role-card {
+  position: relative;
+  min-height: 300px;
+  padding: 34px;
+  text-align: left;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 26px;
+  background: rgba(8, 13, 25, 0.48);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  color: white;
+  cursor: pointer;
+  overflow: hidden;
+  transition: 0.4s ease;
+}
+
+.role-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(150, 230, 255, 0.45);
+  background: rgba(12, 22, 38, 0.65);
+}
+
+.role-icon {
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.07);
+  font-size: 25px;
+}
+
+.role-info {
+  margin-top: 55px;
+}
+
+.role-label {
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  color: rgba(160, 225, 255, 0.7);
+}
+
+.role-info h3 {
+  margin: 8px 0 12px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.role-info p {
+  max-width: 430px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.card-arrow {
+  position: absolute;
+  right: 30px;
+  bottom: 27px;
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.role-number {
+  position: absolute;
+  top: 28px;
+  right: 30px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+/* =========================================
+   BACK BUTTON
+========================================= */
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  margin-bottom: 45px;
+  transition: 0.25s ease;
+}
+
+.back-button:hover {
+  color: white;
+  transform: translateX(-4px);
+}
+
+/* =========================================
+   ADMIN LOGIN
+========================================= */
+
+.login-screen {
+  position: relative;
+  z-index: 3;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+.login-card {
+  width: min(520px, 100%);
+  padding: 45px;
+  border: 1px solid rgba(255, 255, 255, 0.17);
+  border-radius: 28px;
+  background: rgba(5, 10, 20, 0.66);
+  backdrop-filter: blur(28px);
+  box-shadow:
+    0 30px 100px rgba(0, 0, 0, 0.35);
+  animation: fadeUp 0.7s ease forwards;
+}
+
+.login-icon {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+  border: 1px solid rgba(150, 225, 255, 0.35);
+  border-radius: 18px;
+  background: rgba(150, 225, 255, 0.08);
+  color: #9ee7ff;
+  font-size: 27px;
+}
+
+.login-card h2 {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(36px, 5vw, 55px);
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.login-card h2 span {
+  color: #9ee7ff;
+  font-weight: 400;
+}
+
+.login-description {
+  margin: 20px 0 35px;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.login-card label {
+  display: block;
+  margin-bottom: 9px;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.login-card input {
+  width: 100%;
+  padding: 16px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.06);
+  color: white;
+  font-size: 14px;
+  transition: 0.25s ease;
+}
+
+.login-card input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.login-card input:focus {
+  border-color: rgba(150, 225, 255, 0.65);
+  box-shadow:
+    0 0 0 3px rgba(150, 225, 255, 0.08);
+}
+
+.error-message {
+  margin: 12px 0 0;
+  color: #ff9b9b;
+  font-size: 12px;
+}
+
+.verify-button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgba(150, 225, 255, 0.35);
+  border-radius: 12px;
+  background: rgba(150, 225, 255, 0.09);
+  color: white;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  transition: 0.3s ease;
+}
+
+.verify-button:hover {
+  background: rgba(150, 225, 255, 0.16);
+  border-color: rgba(150, 225, 255, 0.65);
+}
+
+.verify-button span {
+  font-size: 20px;
+}
+
+.security-note {
+  margin: 25px 0 0;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+}
+
+/* =========================================
+   DASHBOARD
+========================================= */
+
+.dashboard-screen {
+  position: relative;
+  z-index: 3;
+  min-height: 100vh;
+  padding: 70px 25px;
+}
+
+.dashboard-content {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.dashboard-content h2 {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(42px, 7vw, 80px);
+  line-height: 1;
+  letter-spacing: -0.06em;
+}
+
+.dashboard-content h2 span {
+  color: #9ee7ff;
+  font-weight: 400;
+}
+
+.dashboard-description {
+  margin: 20px 0 45px;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 16px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.dashboard-card {
+  min-height: 190px;
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 22px;
+  background: rgba(8, 13, 25, 0.55);
+  backdrop-filter: blur(20px);
+  color: white;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(150, 225, 255, 0.4);
+}
+
+.dashboard-card>span {
+  color: rgba(150, 225, 255, 0.7);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+}
+
+.dashboard-card h3 {
+  margin: 30px 0 10px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.dashboard-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.dashboard-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.dashboard-year {
+  color: rgba(150, 225, 255, 0.8);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+}
+
+.dashboard-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  margin-top: 18px;
+  border: 1px solid rgba(150, 225, 255, 0.22);
+  border-radius: 14px;
+  background: rgba(150, 225, 255, 0.06);
+  font-size: 20px;
+}
+
+.dashboard-action {
+  display: inline-block;
+  margin-top: 22px;
+  color: rgba(150, 225, 255, 0.7);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+}
+
+/* =========================================
+   YEAR SELECTION
+========================================= */
+
+.year-screen {
+  position: relative;
+  z-index: 3;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 25px;
+}
+
+.year-content {
+  width: min(1050px, 100%);
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.year-content h2 {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(45px, 7vw, 82px);
+  line-height: 1;
+  letter-spacing: -0.06em;
+}
+
+.year-content h2 span {
+  color: #9ee7ff;
+  font-weight: 400;
+}
+
+.year-subtitle {
+  max-width: 620px;
+  margin: 20px 0 45px;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* =========================================
+   YEAR GRID
+========================================= */
+
+.year-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+/* =========================================
+   YEAR CARD
+========================================= */
+
+.year-card {
+  position: relative;
+  min-height: 190px;
+  padding: 30px;
+  display: flex;
+  align-items: flex-start;
+  gap: 25px;
+  text-align: left;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 22px;
+  background: rgba(7, 13, 25, 0.55);
+  backdrop-filter: blur(22px);
+  color: white;
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    background 0.35s ease;
+}
+
+.year-card:hover {
+  transform: translateY(-7px);
+  border-color: rgba(150, 225, 255, 0.55);
+  background: rgba(12, 24, 40, 0.72);
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.3);
+}
+
+.year-number {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: rgba(150, 225, 255, 0.65);
+}
+
+.year-small {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 8px;
+  letter-spacing: 0.25em;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.year-card h3 {
+  margin: 0 0 9px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.year-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 12px;
+}
+
+.year-arrow {
+  position: absolute;
+  right: 25px;
+  bottom: 22px;
+  font-size: 22px;
+  color: rgba(255, 255, 255, 0.45);
+  transition: 0.3s ease;
+}
+
+.year-card:hover .year-arrow {
+  color: #9ee7ff;
+  transform: translateX(5px);
+}
+
+.selected-year {
+  display: inline-block;
+  margin: 25px 0 0;
+  padding: 7px 14px;
+  border: 1px solid rgba(150, 225, 255, 0.25);
+  border-radius: 999px;
+  background: rgba(150, 225, 255, 0.08);
+  color: #9ee7ff;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* =========================================
+   ADMIN PANEL
+   Uses the SAME existing glass UI
+========================================= */
+
+.admin-panel {
+  position: relative;
+  z-index: 3;
+  min-height: 100vh;
+  padding: 60px 25px;
+}
+
+.admin-panel-content {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.admin-panel-content h2 {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(42px, 7vw, 78px);
+  line-height: 1;
+  letter-spacing: -0.06em;
+}
+
+.admin-panel-content h2 span {
+  color: #9ee7ff;
+  font-weight: 400;
+}
+
+.admin-panel-subtitle {
+  margin: 18px 0 40px;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.admin-year-section {
+  margin-top: 35px;
+}
+
+.admin-year-title {
+  margin-bottom: 18px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+}
+
+.admin-input {
+  width: 100%;
+  padding: 15px 17px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.06);
+  color: white;
+  font-size: 14px;
+  transition: 0.25s ease;
+}
+
+.admin-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.admin-input:focus {
+  border-color: rgba(150, 225, 255, 0.65);
+  box-shadow:
+    0 0 0 3px rgba(150, 225, 255, 0.08);
+}
+
+.admin-add-button {
+  margin-top: 12px;
+  padding: 14px 20px;
+  border: 1px solid rgba(150, 225, 255, 0.3);
+  border-radius: 12px;
+  background: rgba(150, 225, 255, 0.08);
+  color: white;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  transition: 0.3s ease;
+}
+
+.admin-add-button:hover {
+  background: rgba(150, 225, 255, 0.15);
+  border-color: rgba(150, 225, 255, 0.6);
+}
+
+.unit-admin-card {
+  position: relative;
+  margin-top: 16px;
+  padding: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 18px;
+  background: rgba(8, 13, 25, 0.48);
+  backdrop-filter: blur(18px);
+}
+
+.unit-admin-card h3 {
+  margin: 0 0 10px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.unit-admin-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.admin-subject-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 25px;
+}
+
+.admin-subject-card {
+  position: relative;
+  padding: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  background: rgba(7, 13, 25, 0.55);
+  backdrop-filter: blur(20px);
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.admin-subject-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(150, 225, 255, 0.4);
+}
+
+.admin-subject-card span {
+  color: rgba(150, 225, 255, 0.65);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+}
+
+.admin-subject-card h3 {
+  margin: 15px 0 8px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 23px;
+  font-weight: 500;
+}
+
+.admin-subject-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 12px;
+}
+
+/* =========================================
+   STUDENT SUBJECTS / UNITS
+   Same dashboard/card language
+========================================= */
+
+.empty-card {
+  grid-column: 1 / -1;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.empty-card h3 {
+  margin: 0 0 10px;
+}
+
+.empty-card p {
+  max-width: 600px;
+}
+
+.subject-card {
+  min-height: 175px;
+}
+
+.unit-card {
+  min-height: 145px;
+}
+
+.unit-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.unit-card h3 {
+  margin-top: 18px;
+}
+
+/* =========================================
+   MESSAGE / SUCCESS STATE
+========================================= */
+
+.admin-message {
+  margin: 18px 0;
+  color: #9ee7ff;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+}
+
+/* =========================================
+   ANIMATION
+========================================= */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+  .landing-content h1 {
+    font-size: 54px;
+  }
+
+  .role-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .role-card {
+    min-height: 250px;
+    padding: 25px;
+  }
+
+  .role-info {
+    margin-top: 35px;
+  }
+
+  .login-card {
+    padding: 30px 22px;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .year-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .year-card {
+    min-height: 160px;
+  }
+
+  .admin-subject-list {
+    grid-template-columns: 1fr;
+  }
+
+  .unit-list {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-panel {
+    padding: 45px 20px;
+  }
+}
+
+/* =========================================================
+   CAMPUSHERE — UNIT NOTES SYSTEM
+   ========================================================= */
+
+/* ADMIN UNIT LIST */
+
+.admin-unit-list-card {
+  max-width: 900px;
+}
+
+.admin-units-section {
+  margin-top: 35px;
+}
+
+.unit-admin-card {
+  width: 100%;
+  margin-bottom: 12px;
+  cursor: pointer;
+  border: 1px solid rgba(120, 190, 230, 0.22);
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+.unit-admin-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(100, 210, 255, 0.5);
+}
+
+.unit-admin-card h3 {
+  margin-bottom: 5px;
+}
+
+.unit-status {
+  font-size: 12px !important;
+  letter-spacing: 0.02em;
+  opacity: 0.7;
+}
+
+
+/* =========================================================
+   ADMIN UNIT CONTENT MANAGER
+   ========================================================= */
+
+.unit-manager-card {
+  max-width: 920px;
+}
+
+.unit-manager-heading {
+  margin-bottom: 35px;
+}
+
+.unit-manager-icon {
+  width: 64px;
+  height: 64px;
+  border: 1px solid rgba(130, 210, 255, 0.3);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin-bottom: 22px;
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 0 30px rgba(80, 180, 255, 0.08);
+}
+
+
+/* =========================================================
+   NOTES OPTION CARDS
+   ========================================================= */
+
+.notes-option-card {
+  position: relative;
+  padding: 28px;
+  margin-top: 18px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  background: rgba(10, 14, 22, 0.62);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.notes-option-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(130, 210, 255, 0.3);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.2);
+}
+
+.smart-notes-card {
+  border-color: rgba(105, 207, 255, 0.25);
+  background:
+    linear-gradient(145deg,
+      rgba(30, 80, 110, 0.18),
+      rgba(10, 14, 22, 0.7));
+}
+
+.notes-option-top {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  margin-bottom: 16px;
+}
+
+.notes-option-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.notes-option-icon.smart-icon {
+  color: #75d9ff;
+  border-color: rgba(90, 205, 255, 0.35);
+  box-shadow: 0 0 25px rgba(70, 190, 255, 0.12);
+}
+
+.notes-option-card h3 {
+  margin: 5px 0 0;
+  font-size: 25px;
+  color: #f5f7fa;
+}
+
+.notes-option-card>p {
+  margin: 0 0 20px;
+  line-height: 1.65;
+  color: rgba(230, 235, 240, 0.68);
+}
+
+
+/* =========================================================
+   BADGES
+   ========================================================= */
+
+.notes-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #9bdfff;
+  border: 1px solid rgba(110, 210, 255, 0.28);
+  padding: 6px 9px;
+  border-radius: 999px;
+  background: rgba(80, 190, 240, 0.07);
+}
+
+.smart-badge {
+  color: #8be2ff;
+  border-color: rgba(90, 215, 255, 0.35);
+  box-shadow: 0 0 18px rgba(70, 190, 255, 0.08);
+}
+
+
+/* =========================================================
+   UPLOADED FILE
+   ========================================================= */
+
+.uploaded-file {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 13px 15px;
+  margin-bottom: 17px;
+  border-radius: 13px;
+  background: rgba(80, 190, 230, 0.07);
+  border: 1px solid rgba(100, 205, 240, 0.16);
+}
+
+.uploaded-file>span {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(70, 200, 240, 0.12);
+  color: #8bdfff;
+}
+
+.uploaded-file strong {
+  display: block;
+  color: #eaf7fc;
+  font-size: 13px;
+  word-break: break-word;
+}
+
+.uploaded-file small {
+  display: block;
+  margin-top: 3px;
+  color: rgba(220, 235, 240, 0.5);
+}
+
+
+/* =========================================================
+   HIDDEN FILE INPUT
+   ========================================================= */
+
+.hidden-file-input {
+  display: none;
+}
+
+
+/* =========================================================
+   NOTES ACTION BUTTON
+   ========================================================= */
+
+.notes-action-button {
+  width: 100%;
+  min-height: 52px;
+  padding: 13px 18px;
+  border: 1px solid rgba(105, 205, 245, 0.3);
+  border-radius: 13px;
+  background: rgba(70, 180, 220, 0.08);
+  color: #91ddff;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.notes-action-button:hover {
+  background: rgba(70, 190, 235, 0.16);
+  border-color: rgba(110, 220, 255, 0.55);
+  transform: translateY(-2px);
+}
+
+.notes-action-button span {
+  font-size: 18px;
+}
+
+.smart-save-button {
+  margin-top: 15px;
+}
+
+
+/* =========================================================
+   SMART NOTES TAGS
+   ========================================================= */
+
+.smart-note-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 12px 0 17px;
+}
+
+.smart-note-tags span {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 6px 9px;
+  border-radius: 999px;
+  color: rgba(180, 230, 245, 0.78);
+  background: rgba(90, 200, 235, 0.07);
+  border: 1px solid rgba(100, 210, 240, 0.14);
+}
+
+
+/* =========================================================
+   SMART NOTES EDITOR
+   ========================================================= */
+
+.smart-notes-editor {
+  width: 100%;
+  min-height: 210px;
+  box-sizing: border-box;
+  resize: vertical;
+  padding: 17px;
+  border-radius: 14px;
+  border: 1px solid rgba(110, 205, 240, 0.18);
+  background: rgba(0, 0, 0, 0.24);
+  color: #e9f4f8;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.7;
+  outline: none;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.smart-notes-editor::placeholder {
+  color: rgba(220, 235, 240, 0.35);
+}
+
+.smart-notes-editor:focus {
+  border-color: rgba(100, 210, 250, 0.45);
+  box-shadow: 0 0 0 3px rgba(70, 190, 240, 0.06);
+}
+
+
+/* =========================================================
+   STUDENT UNIT CONTENT
+   ========================================================= */
+
+.student-notes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 38px;
+}
+
+.student-notes-card {
+  position: relative;
+  min-height: 350px;
+  padding: 30px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  background: rgba(10, 14, 22, 0.62);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.student-notes-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(120, 210, 250, 0.35);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.22);
+}
+
+.smart-student-card {
+  border-color: rgba(100, 210, 250, 0.28);
+  background:
+    linear-gradient(145deg,
+      rgba(30, 85, 115, 0.2),
+      rgba(8, 13, 21, 0.72));
+}
+
+.student-notes-icon {
+  width: 62px;
+  height: 62px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.student-notes-icon.smart-icon {
+  color: #82ddff;
+  border-color: rgba(100, 215, 255, 0.3);
+  box-shadow: 0 0 30px rgba(70, 195, 245, 0.1);
+}
+
+.student-notes-card h3 {
+  font-size: 27px;
+  margin: 12px 0 12px;
+}
+
+.student-notes-card>p {
+  line-height: 1.65;
+  color: rgba(230, 235, 240, 0.65);
+  margin-bottom: 20px;
+}
+
+
+/* =========================================================
+   STUDENT FILE NAME
+   ========================================================= */
+
+.student-file-name {
+  margin: 18px 0;
+  padding: 11px 13px;
+  border-radius: 11px;
+  color: rgba(210, 240, 250, 0.78);
+  background: rgba(70, 190, 230, 0.07);
+  border: 1px solid rgba(90, 200, 240, 0.13);
+  font-size: 12px;
+  word-break: break-word;
+}
+
+
+/* =========================================================
+   SMART NOTES PREVIEW
+   ========================================================= */
+
+.smart-notes-preview {
+  margin-top: 20px;
+  padding: 20px;
+  max-height: 390px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(110, 210, 245, 0.14);
+  color: rgba(235, 246, 250, 0.86);
+  line-height: 1.75;
+  font-size: 14px;
+}
+
+.smart-notes-preview::-webkit-scrollbar {
+  width: 5px;
+}
+
+.smart-notes-preview::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: rgba(130, 210, 235, 0.3);
+}
+
+
+/* =========================================================
+   UNAVAILABLE CONTENT
+   ========================================================= */
+
+.content-unavailable {
+  margin-top: 25px;
+  padding: 15px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(225, 235, 240, 0.42);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   UNIT STATUS ON STUDENT CARDS
+   ========================================================= */
+
+.unit-content-status {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 7px;
+  margin: 8px 0 14px;
+}
+
+.unit-content-status span {
+  padding: 5px 8px;
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(180, 225, 240, 0.72);
+  background: rgba(80, 190, 225, 0.06);
+  border: 1px solid rgba(100, 205, 235, 0.12);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 800px) {
+  .student-notes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .notes-option-card {
+    padding: 22px;
+  }
+
+  .student-notes-card {
+    padding: 23px;
+  }
+}
+
+@media (max-width: 600px) {
+  .notes-option-top {
+    align-items: flex-start;
+  }
+
+  .notes-option-card h3 {
+    font-size: 21px;
+  }
+
+  .student-notes-card h3 {
+    font-size: 23px;
+  }
+
+  .student-notes-card {
+    min-height: auto;
+  }
+}
+
+/* =========================================================
+   CAMPUSHERE UNIT NOTES SYSTEM
+   ========================================================= */
+
+.admin-selected-year {
+  margin-top: 45px;
+}
+
+.admin-add-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.admin-subject-grid {
+  margin-top: 30px;
+}
+
+/* =========================================================
+   ADMIN UNIT MANAGEMENT
+   ========================================================= */
+
+.unit-management-card {
+  max-width: 720px;
+}
+
+.unit-admin-list {
+  margin-top: 35px;
+}
+
+.unit-admin-card {
+  width: 100%;
+  margin-top: 12px;
+  cursor: pointer;
+  text-align: left;
+}
+
+/* =========================================================
+   NOTES MANAGEMENT
+   ========================================================= */
+
+.notes-management-screen {
+  min-height: 100vh;
+}
+
+.note-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 45px;
+}
+
+.note-choice-card {
+  position: relative;
+  min-height: 420px;
+  padding: 38px;
+  border: 1px solid rgba(132, 202, 255, 0.25);
+  border-radius: 28px;
+  background: rgba(8, 14, 24, 0.68);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  overflow: hidden;
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    background 0.35s ease;
+}
+
+.note-choice-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(116, 211, 255, 0.58);
+  background: rgba(10, 20, 32, 0.78);
+}
+
+.note-choice-card::after {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  right: -100px;
+  bottom: -120px;
+  border-radius: 50%;
+  background: rgba(86, 198, 255, 0.08);
+  pointer-events: none;
+}
+
+.note-choice-number {
+  position: absolute;
+  top: 30px;
+  right: 32px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: rgba(125, 211, 252, 0.85);
+}
+
+.note-choice-icon {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(144, 210, 255, 0.28);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 27px;
+  margin-bottom: 32px;
+}
+
+.note-choice-label {
+  display: block;
+  margin-bottom: 12px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: rgba(126, 211, 252, 0.9);
+}
+
+.note-choice-card h3 {
+  margin: 0 0 14px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 30px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.note-choice-card p {
+  max-width: 500px;
+  margin: 0;
+  font-family: "DM Sans", sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(235, 242, 250, 0.66);
+}
+
+.note-upload-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 32px;
+  padding: 14px 20px;
+  border: 1px solid rgba(117, 207, 255, 0.42);
+  border-radius: 12px;
+  background: rgba(93, 193, 246, 0.08);
+  color: #8bdcff;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.note-upload-button:hover {
+  background: rgba(93, 193, 246, 0.16);
+  border-color: rgba(117, 207, 255, 0.7);
+  transform: translateY(-2px);
+}
+
+.note-upload-button input {
+  display: none;
+}
+
+.note-count {
+  margin-top: 18px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  color: rgba(235, 242, 250, 0.48);
+}
+
+.ai-note-card {
+  border-color: rgba(174, 131, 255, 0.28);
+}
+
+.ai-note-card:hover {
+  border-color: rgba(190, 150, 255, 0.6);
+}
+
+.ai-icon {
+  color: #e3c5ff;
+  box-shadow: 0 0 35px rgba(170, 117, 255, 0.12);
+}
+
+.ai-upload-button {
+  border-color: rgba(190, 150, 255, 0.45);
+  color: #dfc2ff;
+  background: rgba(174, 112, 255, 0.08);
+}
+
+.ai-upload-button:hover {
+  border-color: rgba(205, 168, 255, 0.75);
+  background: rgba(174, 112, 255, 0.15);
+}
+
+/* =========================================================
+   UPLOADED NOTES ADMIN LIST
+   ========================================================= */
+
+.uploaded-notes-section {
+  margin-top: 70px;
+}
+
+.uploaded-notes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.uploaded-note-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 20px;
+  border: 1px solid rgba(132, 202, 255, 0.17);
+  border-radius: 16px;
+  background: rgba(8, 15, 25, 0.62);
+}
+
+.uploaded-note-icon {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(132, 202, 255, 0.2);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.uploaded-note-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.uploaded-note-info strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.uploaded-note-info span {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: rgba(145, 211, 245, 0.62);
+}
+
+.note-delete-button {
+  border: 0;
+  background: transparent;
+  color: rgba(255, 140, 140, 0.72);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+}
+
+.note-delete-button:hover {
+  color: #ff9d9d;
+}
+
+.notes-empty-state {
+  padding: 45px 20px;
+  text-align: center;
+  border: 1px dashed rgba(132, 202, 255, 0.2);
+  border-radius: 20px;
+  background: rgba(8, 15, 25, 0.38);
+}
+
+.notes-empty-state>div {
+  margin-bottom: 15px;
+  font-size: 35px;
+  color: rgba(130, 209, 255, 0.55);
+}
+
+.notes-empty-state h3 {
+  margin: 0 0 8px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.notes-empty-state p {
+  margin: 0;
+  font-family: "DM Sans", sans-serif;
+  color: rgba(255, 255, 255, 0.48);
+}
+
+/* =========================================================
+   STUDENT NOTE PAGE
+   ========================================================= */
+
+.student-note-count {
+  margin-top: 22px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: rgba(148, 215, 247, 0.62);
+}
+
+.ai-count {
+  color: rgba(207, 172, 255, 0.72);
+}
+
+.note-open-button {
+  width: 100%;
+  margin-top: 28px;
+  padding: 15px 18px;
+  border: 1px solid rgba(121, 208, 255, 0.35);
+  border-radius: 12px;
+  background: rgba(93, 193, 246, 0.08);
+  color: #8bdcff;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.note-open-button:hover:not(:disabled) {
+  background: rgba(93, 193, 246, 0.17);
+  border-color: rgba(121, 208, 255, 0.7);
+  transform: translateY(-2px);
+}
+
+.note-open-button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.ai-open-button {
+  border-color: rgba(196, 158, 255, 0.4);
+  background: rgba(170, 112, 255, 0.08);
+  color: #dfc2ff;
+}
+
+.ai-open-button:hover:not(:disabled) {
+  background: rgba(170, 112, 255, 0.17);
+  border-color: rgba(204, 170, 255, 0.7);
+}
+
+/* =========================================================
+   STUDENT FILE LIST
+   ========================================================= */
+
+.student-files-section {
+  margin-top: 70px;
+}
+
+.student-note-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.student-note-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 17px 20px;
+  border: 1px solid rgba(132, 202, 255, 0.18);
+  border-radius: 15px;
+  background: rgba(8, 15, 25, 0.58);
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease;
+}
+
+.student-note-row:hover {
+  border-color: rgba(126, 211, 252, 0.42);
+  background: rgba(12, 22, 35, 0.72);
+}
+
+.student-note-index {
+  width: 30px;
+  flex: 0 0 30px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 11px;
+  color: rgba(124, 207, 248, 0.65);
+}
+
+.student-note-file-icon {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 11px;
+  border: 1px solid rgba(137, 210, 255, 0.2);
+  background: rgba(255, 255, 255, 0.04);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 11px;
+  color: rgba(223, 241, 255, 0.85);
+}
+
+.student-note-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.student-note-info strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.student-note-info span {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: rgba(150, 211, 242, 0.55);
+}
+
+.student-file-open {
+  padding: 10px 14px;
+  border: 1px solid rgba(123, 210, 255, 0.28);
+  border-radius: 9px;
+  background: transparent;
+  color: #8bdcff;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+
+.student-file-open:hover {
+  background: rgba(101, 202, 255, 0.09);
+  border-color: rgba(123, 210, 255, 0.6);
+}
+
+.ai-student-row {
+  border-color: rgba(190, 148, 255, 0.2);
+}
+
+.ai-student-row:hover {
+  border-color: rgba(202, 166, 255, 0.48);
+}
+
+.ai-file-icon {
+  color: #dfc2ff;
+  border-color: rgba(202, 166, 255, 0.3);
+}
+
+.ai-file-open {
+  color: #dfc2ff;
+  border-color: rgba(202, 166, 255, 0.3);
+}
+
+.ai-file-open:hover {
+  background: rgba(174, 112, 255, 0.1);
+  border-color: rgba(202, 166, 255, 0.62);
+}
+
+.ai-section-title {
+  margin-top: 50px;
+}
+
+/* =========================================================
+   FULL SCREEN PDF VIEWER
+   ========================================================= */
+
+.note-viewer-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  background: #080b10;
+}
+
+.note-viewer-topbar {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 12px 24px;
+  border-bottom: 1px solid rgba(140, 210, 255, 0.13);
+  background: rgba(7, 12, 19, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.viewer-back-button {
+  flex: 0 0 auto;
+  border: 0;
+  background: transparent;
+  color: rgba(207, 231, 248, 0.7);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  cursor: pointer;
+}
+
+.viewer-back-button:hover {
+  color: #fff;
+}
+
+.viewer-title {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.viewer-title strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.viewer-badge {
+  flex: 0 0 auto;
+  padding: 7px 10px;
+  border: 1px solid rgba(180, 142, 255, 0.35);
+  border-radius: 7px;
+  background: rgba(172, 112, 255, 0.08);
+  color: #dcbcff;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.11em;
+}
+
+.viewer-download {
+  flex: 0 0 auto;
+  padding: 9px 13px;
+  border: 1px solid rgba(125, 208, 255, 0.25);
+  border-radius: 8px;
+  color: #8bdcff;
+  text-decoration: none;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+}
+
+.viewer-download:hover {
+  background: rgba(102, 204, 255, 0.08);
+}
+
+.note-pdf-frame {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  background: #15181d;
+}
+
+.note-pdf-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #fff;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 800px) {
+  .note-choice-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .note-choice-card {
+    min-height: auto;
+    padding: 28px;
+  }
+
+  .admin-add-row {
+    flex-direction: column;
+  }
+
+  .uploaded-note-row,
+  .student-note-row {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .student-note-info,
+  .uploaded-note-info {
+    min-width: calc(100% - 120px);
+  }
+
+  .student-file-open,
+  .note-delete-button {
+    margin-left: auto;
+  }
+
+  .note-viewer-topbar {
+    gap: 12px;
+    padding: 10px 14px;
+  }
+
+  .viewer-badge {
+    display: none;
+  }
+
+  .viewer-download {
+    font-size: 8px;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 520px) {
+  .note-choice-card h3 {
+    font-size: 25px;
+  }
+
+  .student-note-row {
+    gap: 10px;
+  }
+
+  .student-note-file-icon {
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
+  }
+
+  .student-file-open {
+    width: 100%;
+    margin-top: 5px;
+  }
+
+  .note-viewer-topbar {
+    min-height: 60px;
+  }
+
+  .viewer-title strong {
+    font-size: 12px;
+  }
+}
+
+/* =========================================================
+   INTERACTIVE GALAXY DARK MODE
+   ========================================================= */
+
+.galaxy-background {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+
+  z-index: 0;
+
+  background:
+    radial-gradient(circle at center,
+      #090b1e 0%,
+      #02030a 48%,
+      #000000 100%);
+
+  cursor:
+    grab;
+}
+
+.galaxy-background:active {
+  cursor: grabbing;
+}
+
+/* =========================================================
+   GALAXY OVERLAY
+   ========================================================= */
+
+.galaxy-dark-overlay {
+  position: fixed;
+  inset: 0;
+
+  z-index: 1;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(circle at center,
+      rgba(255, 71, 31, 0.035),
+      transparent 30%),
+    linear-gradient(180deg,
+      rgba(0, 0, 0, 0.16),
+      rgba(0, 0, 0, 0.44));
+}
+
+/* Additional soft cinematic glow */
+.galaxy-stars-glow {
+  position: fixed;
+  inset: 0;
+
+  z-index: 1;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(circle at 50% 48%,
+      rgba(255, 98, 55, 0.07),
+      transparent 20%),
+    radial-gradient(circle at 50% 50%,
+      rgba(9, 73, 240, 0.06),
+      transparent 42%);
+}
+
+/* =========================================================
+   DARK MODE APP
+   ========================================================= */
+
+.app.campushere-dark-mode {
+  background:
+    #000;
+}
+
+/*
+   Keep ALL existing CampusHere content
+   above the galaxy.
+*/
+
+.app.campushere-dark-mode .landing-screen,
+.app.campushere-dark-mode .role-screen,
+.app.campushere-dark-mode .year-screen,
+.app.campushere-dark-mode .login-screen,
+.app.campushere-dark-mode .dashboard-screen {
+  position: relative;
+  z-index: 5;
+}
+
+/* =========================================================
+   THEME TOGGLE
+   ========================================================= */
+
+.theme-toggle {
+  position: fixed;
+
+  top: 24px;
+  right: 28px;
+
+  z-index: 100;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 11px 17px;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  border-radius: 999px;
+
+  background:
+    rgba(5, 8, 18, 0.62);
+
+  backdrop-filter:
+    blur(15px);
+
+  -webkit-backdrop-filter:
+    blur(15px);
+
+  color:
+    rgba(255, 255, 255, 0.82);
+
+  font-family:
+    "DM Sans",
+    sans-serif;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.16em;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.theme-toggle:hover {
+  transform:
+    translateY(-2px);
+
+  border-color:
+    rgba(117, 205, 255, 0.55);
+
+  background:
+    rgba(12, 20, 40, 0.8);
+
+  color:
+    #ffffff;
+}
+
+.theme-toggle-icon {
+  width: 24px;
+  height: 24px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.07);
+
+  font-size: 13px;
+}
+
+.theme-toggle-text {
+  white-space:
+    nowrap;
+}
+
+/* Active dark mode button */
+.theme-toggle-active {
+  border-color:
+    rgba(255, 96, 48, 0.55);
+
+  background:
+    rgba(27, 11, 20, 0.72);
+
+  color:
+    #ffffff;
+}
+
+.theme-toggle-active .theme-toggle-icon {
+  color:
+    #ff9f78;
+}
+
+/* =========================================================
+   DARK MODE GLASS UI
+   ========================================================= */
+
+.app.campushere-dark-mode .dashboard-card,
+.app.campushere-dark-mode .year-card,
+.app.campushere-dark-mode .role-card,
+.app.campushere-dark-mode .login-card {
+  background:
+    rgba(3, 6, 16, 0.60);
+
+  border-color:
+    rgba(255, 255, 255, 0.13);
+
+  backdrop-filter:
+    blur(18px);
+
+  -webkit-backdrop-filter:
+    blur(18px);
+}
+
+/* Slightly stronger readability over particles */
+.app.campushere-dark-mode .dashboard-content,
+.app.campushere-dark-mode .year-content,
+.app.campushere-dark-mode .role-content {
+  text-shadow:
+    0 1px 16px rgba(0, 0, 0, 0.45);
+}
+
+/* =========================================================
+   DARK MODE TRANSITION
+   ========================================================= */
+
+.app {
+  transition:
+    background 0.7s ease;
+}
+
+.galaxy-background {
+  animation:
+    galaxyAppear 0.9s ease both;
+}
+
+@keyframes galaxyAppear {
+  from {
+    opacity: 0;
+    transform:
+      scale(1.04);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      scale(1);
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .theme-toggle {
+    top: 16px;
+    right: 16px;
+
+    padding: w 10px 12px;
+  }
+
+  .theme-toggle-text {
+    display: none;
+  }
+
+  .galaxy-background {
+    touch-action:
+      none;
+  }
+}
