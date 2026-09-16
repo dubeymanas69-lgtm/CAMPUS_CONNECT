@@ -27,14 +27,12 @@ type NoteMeta = {
   unitKey: string;
   title: string;
   fileName: string;
+  originalFileName?: string;
   mimeType: string;
   size: number;
   category: NoteCategory;
   createdAt: number;
-};
-
-type StoredNote = NoteMeta & {
-  blob: Blob;
+  storagePath: string;
 };
 
 type Screen =
@@ -65,139 +63,68 @@ const emptySubjects = (): Record<Year, Subject[]> => ({
   "Year 4": [],
 });
 
-/* =========================================================
-   INDEXED DB
-   Uploaded PPT/PPTX/PDF files are stored in the browser.
-   ========================================================= */
+async function requestJson<T>(
+  url: string,
+  options?: RequestInit
+): Promise<T> {
+  const response = await fetch(url, options);
+  const data = await response.json().catch(() => ({}));
 
-const DB_NAME = "CampusHereNotesDB";
-const DB_VERSION = 1;
-const DB_STORE = "notes";
-const YEAR1_BACKGROUND =
-  "https://res.cloudinary.com/fq2a6und/image/upload/v1789473492/i.png";
+  if (!response.ok) {
+    throw new Error(
+      data.error || "CampusHere API request failed."
+    );
+  }
 
-function openNotesDB(): Promise<IDBDatabase> {
-  return new Promise((resolve, reject) => {
-    const request = indexedDB.open(DB_NAME, DB_VERSION);
+  return data;
+}
 
-    request.onupgradeneeded = () => {
-      const db = request.result;
+async function getAllNotes(): Promise<NoteMeta[]> {
+  const data = await requestJson<{
+    success: boolean;
+    notes: NoteMeta[];
+  }>("/api/notes");
 
-      if (!db.objectStoreNames.contains(DB_STORE)) {
-        db.createObjectStore(DB_STORE, {
-          keyPath: "id",
-        });
-      }
-    };
+  return data.notes;
+}
 
-    request.onsuccess = () => {
-      resolve(request.result);
-    };
+async function uploadNoteFile({
+  file,
+  unitKey,
+  title,
+  category,
+}: {
+  file: File;
+  unitKey: string;
+  title: string;
+  category: NoteCategory;
+}): Promise<NoteMeta> {
+  const formData = new FormData();
 
-    request.onerror = () => {
-      reject(request.error);
-    };
+  formData.append("file", file);
+  formData.append("unitKey", unitKey);
+  formData.append("title", title);
+  formData.append("category", category);
+
+  return requestJson<NoteMeta>("/api/notes", {
+    method: "POST",
+    body: formData,
   });
 }
 
-function saveNote(note: StoredNote): Promise<void> {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const db = await openNotesDB();
-
-      const transaction = db.transaction(DB_STORE, "readwrite");
-      const store = transaction.objectStore(DB_STORE);
-
-      store.put(note);
-
-      transaction.oncomplete = () => {
-        db.close();
-        resolve();
-      };
-
-      transaction.onerror = () => {
-        db.close();
-        reject(transaction.error);
-      };
-    } catch (error) {
-      reject(error);
-    }
+async function deleteNoteFromApi(id: string): Promise<void> {
+  await requestJson<{ success: boolean }>(`/api/notes/${id}`, {
+    method: "DELETE",
   });
 }
 
-function getAllNotes(): Promise<StoredNote[]> {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const db = await openNotesDB();
+async function getNoteDownloadUrl(id: string): Promise<string> {
+  const data = await requestJson<{
+    success: boolean;
+    url: string;
+  }>(`/api/notes/${id}/download-url`);
 
-      const transaction = db.transaction(DB_STORE, "readonly");
-      const store = transaction.objectStore(DB_STORE);
-
-      const request = store.getAll();
-
-      request.onsuccess = () => {
-        db.close();
-        resolve(request.result || []);
-      };
-
-      request.onerror = () => {
-        db.close();
-        reject(request.error);
-      };
-    } catch (error) {
-      reject(error);
-    }
-  });
-}
-
-function getNoteById(id: string): Promise<StoredNote | undefined> {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const db = await openNotesDB();
-
-      const transaction = db.transaction(DB_STORE, "readonly");
-      const store = transaction.objectStore(DB_STORE);
-
-      const request = store.get(id);
-
-      request.onsuccess = () => {
-        db.close();
-        resolve(request.result);
-      };
-
-      request.onerror = () => {
-        db.close();
-        reject(request.error);
-      };
-    } catch (error) {
-      reject(error);
-    }
-  });
-}
-
-function deleteNoteFromDB(id: string): Promise<void> {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const db = await openNotesDB();
-
-      const transaction = db.transaction(DB_STORE, "readwrite");
-      const store = transaction.objectStore(DB_STORE);
-
-      store.delete(id);
-
-      transaction.oncomplete = () => {
-        db.close();
-        resolve();
-      };
-
-      transaction.onerror = () => {
-        db.close();
-        reject(transaction.error);
-      };
-    } catch (error) {
-      reject(error);
-    }
-  });
+  return data.url;
 }
 
 function formatFileSize(bytes: number) {
@@ -347,46 +274,12 @@ function App() {
   useEffect(() => {
     getAllNotes()
       .then((storedNotes) => {
-        setNotes(
-          storedNotes.map(
-            ({
-              id,
-              unitKey,
-              title,
-              fileName,
-              mimeType,
-              size,
-              category,
-              createdAt,
-            }) => ({
-              id,
-              unitKey,
-              title,
-              fileName,
-              mimeType,
-              size,
-              category,
-              createdAt,
-            })
-          )
-        );
+        setNotes(storedNotes);
       })
       .catch(() => {
         console.log("Could not load CampusHere notes.");
       });
   }, []);
-
-  /* =========================================================
-     CLEAN PDF VIEWER URL
-     ========================================================= */
-
-  useEffect(() => {
-    return () => {
-      if (viewerUrl) {
-        URL.revokeObjectURL(viewerUrl);
-      }
-    };
-  }, [viewerUrl]);
 
   /* =========================================================
      ADMIN LOGIN
@@ -709,34 +602,15 @@ function App() {
           continue;
         }
 
-        const note: StoredNote = {
-          id: `${Date.now()}-${Math.random()
-            .toString(36)
-            .slice(2)}`,
-
+        await uploadNoteFile({
+          file,
           unitKey,
-
           title: file.name.replace(
             /\.[^/.]+$/,
             ""
           ),
-
-          fileName: file.name,
-
-          mimeType:
-            file.type ||
-            "application/octet-stream",
-
-          size: file.size,
-
           category,
-
-          createdAt: Date.now(),
-
-          blob: file,
-        };
-
-        await saveNote(note);
+        });
 
         uploaded++;
       }
@@ -744,29 +618,7 @@ function App() {
       const latestNotes =
         await getAllNotes();
 
-      setNotes(
-        latestNotes.map(
-          ({
-            id,
-            unitKey,
-            title,
-            fileName,
-            mimeType,
-            size,
-            category,
-            createdAt,
-          }) => ({
-            id,
-            unitKey,
-            title,
-            fileName,
-            mimeType,
-            size,
-            category,
-            createdAt,
-          })
-        )
-      );
+      setNotes(latestNotes);
 
       if (uploaded > 0) {
         setMessage(
@@ -783,9 +635,11 @@ function App() {
             : "Please select PPT, PPTX or PDF files."
         );
       }
-    } catch {
+    } catch (error) {
       setMessage(
-        "Something went wrong while uploading the notes."
+        error instanceof Error
+          ? error.message
+          : "Something went wrong while uploading the notes."
       );
     } finally {
       setIsUploading(false);
@@ -799,7 +653,7 @@ function App() {
 
   const removeNote = async (noteId: string) => {
     try {
-      await deleteNoteFromDB(noteId);
+      await deleteNoteFromApi(noteId);
 
       setNotes((previous) =>
         previous.filter(
@@ -808,8 +662,12 @@ function App() {
       );
 
       setMessage("Note removed successfully.");
-    } catch {
-      setMessage("Could not remove this note.");
+    } catch (error) {
+      setMessage(
+        error instanceof Error
+          ? error.message
+          : "Could not remove this note."
+      );
     }
   };
 
@@ -819,26 +677,10 @@ function App() {
 
   const openNote = async (note: NoteMeta) => {
     try {
-      const storedNote =
-        await getNoteById(note.id);
-
-      if (!storedNote) {
-        setMessage(
-          "This note could not be found."
-        );
-        return;
-      }
-
-      const url = URL.createObjectURL(
-        storedNote.blob
-      );
+      const url = await getNoteDownloadUrl(note.id);
 
       /* PDF → CampusHere full-screen viewer */
       if (isPdf(note)) {
-        if (viewerUrl) {
-          URL.revokeObjectURL(viewerUrl);
-        }
-
         setViewerNote(note);
         setViewerUrl(url);
         setScreen("note-viewer");
@@ -859,14 +701,6 @@ function App() {
           );
         }
 
-        /*
-          Keep the blob URL alive for the new tab.
-          It is revoked later.
-        */
-        window.setTimeout(() => {
-          URL.revokeObjectURL(url);
-        }, 5 * 60 * 1000);
-
         return;
       }
 
@@ -876,12 +710,11 @@ function App() {
         "noopener,noreferrer"
       );
 
-      window.setTimeout(() => {
-        URL.revokeObjectURL(url);
-      }, 5 * 60 * 1000);
-    } catch {
+    } catch (error) {
       setMessage(
-        "Unable to open this note."
+        error instanceof Error
+          ? error.message
+          : "Unable to open this note."
       );
     }
   };
@@ -891,10 +724,6 @@ function App() {
      ========================================================= */
 
   const closeViewer = () => {
-    if (viewerUrl) {
-      URL.revokeObjectURL(viewerUrl);
-    }
-
     setViewerUrl("");
     setViewerNote(null);
     setScreen("student-unit-notes");
